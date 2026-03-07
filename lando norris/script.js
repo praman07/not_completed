@@ -1,66 +1,66 @@
-// script.js - Premium Lando Norris Experience
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Initial GSAP Setup
-    gsap.registerPlugin();
-
     const loadBtn = document.getElementById("load-btn");
     const splashScreen = document.getElementById("splash-screen");
     const cursor = document.getElementById("custom-cursor");
+    const header = document.querySelector("header");
+    const heroCutout = document.querySelector(".hero-cutout");
+    const marquee = document.querySelector(".marquee-container");
 
-    // 2. Custom Cursor Logic
+    if (header) header.classList.add("header-hidden");
+    if (heroCutout) heroCutout.classList.add("hero-hidden");
+    if (marquee) marquee.classList.add("marquee-hidden");
+
     document.addEventListener("mousemove", (e) => {
-        gsap.to(cursor, {
-            x: e.clientX - 10,
-            y: e.clientY - 10,
-            duration: 0.1,
-            ease: "power2.out"
-        });
+        cursor.style.left = `${e.clientX - 10}px`;
+        cursor.style.top = `${e.clientY - 10}px`;
     });
 
-    // Expand cursor on interactive elements
     const interactives = document.querySelectorAll("a, button, .hamburger, .helmet-card");
     interactives.forEach(el => {
         el.addEventListener("mouseenter", () => {
-            gsap.to(cursor, { scale: 3, opacity: 0.5, duration: 0.3 });
+            cursor.style.transform = "scale(3)";
+            cursor.style.opacity = "0.5";
         });
         el.addEventListener("mouseleave", () => {
-            gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
+            cursor.style.transform = "scale(1)";
+            cursor.style.opacity = "1";
+        });
+    });
+    const magneticBtns = document.querySelectorAll('.pill-btn');
+
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0) scale(1)';
         });
     });
 
-    // 3. Splash Screen Entrance
     if (loadBtn && splashScreen) {
         loadBtn.addEventListener("click", function () {
-            const tl = gsap.timeline();
+            splashScreen.classList.add("splash-hidden");
 
-            tl.to(splashScreen, {
-                y: "-100%",
-                duration: 1.2,
-                ease: "expo.inOut"
-            })
-                .from("header", {
-                    y: -100,
-                    opacity: 0,
-                    duration: 1,
-                    ease: "power4.out"
-                }, "-=0.5")
-                .from(".hero-cutout", {
-                    y: 100,
-                    opacity: 0,
-                    duration: 1.5,
-                    ease: "power4.out"
-                }, "-=0.8")
-                .from(".marquee-container", {
-                    opacity: 0,
-                    x: 100,
-                    duration: 2,
-                    ease: "power2.out"
-                }, "-=1");
+            setTimeout(() => {
+                header.classList.remove("header-hidden");
+            }, 500);
+
+            setTimeout(() => {
+                heroCutout.classList.remove("hero-hidden");
+            }, 800);
+
+            setTimeout(() => {
+                marquee.classList.remove("marquee-hidden");
+            }, 1000);
         });
     }
 
-    // 4. Hero Section Face Mask Effect
     const heroContent = document.getElementById("hero-content");
     const maskFollower = document.getElementById("mask-follower");
     const maskImage = document.getElementById("mask-image");
@@ -71,34 +71,21 @@ document.addEventListener("DOMContentLoaded", function () {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Positioning for 350x350 follower
             const followerX = x - 175;
             const followerY = y - 175;
 
-            // Smoothing the follower movement
-            gsap.to(maskFollower, {
-                left: followerX,
-                top: followerY,
-                duration: 0.2,
-                ease: "power1.out"
-            });
-
-            gsap.to(maskImage, {
-                left: -followerX,
-                top: -followerY,
-                duration: 0.2,
-                ease: "power1.out"
-            });
-
+            maskFollower.style.left = `${followerX}px`;
+            maskFollower.style.top = `${followerY}px`;
+            maskImage.style.left = `${-followerX}px`;
+            maskImage.style.top = `${-followerY}px`;
             maskFollower.style.opacity = 1;
         });
 
         heroContent.addEventListener("mouseleave", function () {
-            gsap.to(maskFollower, { opacity: 0, duration: 0.5 });
+            maskFollower.style.opacity = 0;
         });
     }
 
-    // 5. Scroll Reveal Logic using Intersection Observer
     const observerOptions = {
         threshold: 0.2
     };
@@ -108,30 +95,26 @@ document.addEventListener("DOMContentLoaded", function () {
             if (entry.isIntersecting) {
                 entry.target.classList.add("fade-in");
 
-                // Animate background number if present
                 const bgNum = entry.target.querySelector(".bg-number");
                 if (bgNum) {
-                    gsap.from(bgNum, {
-                        x: -50,
-                        opacity: 0,
-                        duration: 1.5,
-                        ease: "power2.out"
-                    });
+                    bgNum.classList.remove("hidden-num");
                 }
             }
         });
     }, observerOptions);
 
     document.querySelectorAll(".fade-element").forEach(el => {
+
+        const bgNum = el.querySelector(".bg-number");
+        if (bgNum) bgNum.classList.add("hidden-num");
+
         observer.observe(el);
     });
 
-    // 6. Header Tilt Effect on Scroll
     window.addEventListener("scroll", () => {
         const scrolled = window.pageYOffset;
-        gsap.to("header", {
-            backgroundColor: scrolled > 50 ? "rgba(10, 11, 12, 0.95)" : "rgba(10, 11, 12, 0.8)",
-            duration: 0.3
-        });
+        if (header) {
+            header.style.backgroundColor = scrolled > 50 ? "rgba(10, 11, 12, 0.95)" : "rgba(10, 11, 12, 0.8)";
+        }
     });
 });

@@ -1,10 +1,5 @@
-/* 
-    Lando Norris - High-Energy Design
-    Simplified CSS for Beginner-Level Developers
-    (No root variables used - actual values written directly)
-*/
 
-/* 1. Global Reset - This makes elements look consistent across browsers */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,15 +12,14 @@ html {
 
 body {
     background-color: #0a0b0c;
-    /* Deep Dark Background */
+    
     color: #ffffff;
-    /* White Text */
+    
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* 2. Utility Classes - Reusable text styles */
 .serif-italic {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -40,7 +34,7 @@ body {
 
 .neon-text {
     color: #d2ff00;
-    /* Neon Yellow */
+    
     text-shadow: 0 0 20px rgba(210, 255, 0, 0.4);
 }
 
@@ -49,7 +43,6 @@ body {
     color: #0a0b0c;
 }
 
-/* 3. Custom Cursor */
 #custom-cursor {
     width: 20px;
     height: 20px;
@@ -62,7 +55,6 @@ body {
     transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* 4. Splash Screen */
 .splash-screen {
     position: fixed;
     top: 0;
@@ -87,7 +79,6 @@ body {
     margin-bottom: 2rem;
 }
 
-/* 5. Header and Navigation */
 header {
     background: rgba(10, 11, 12, 0.8);
     backdrop-filter: blur(20px);
@@ -105,9 +96,75 @@ header {
 
 .logo {
     font-family: 'Teko', sans-serif;
-    font-size: 28px;
+    font-size: 32px;
+    font-weight: 700;
     color: #ffffff;
-    letter-spacing: 2px;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 2px 2px 0px rgba(210, 255, 0, 0.3);
+    transform: skewX(-10deg);
+}
+
+.logo span {
+    color: #d2ff00;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1;
+}
+
+.circle-btn {
+    width: 60px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d2ff00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    margin-top: 20px;
+}
+
+.circle-btn::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid rgba(210, 255, 0, 0.2);
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.circle-btn:hover {
+    background: #d2ff00;
+    color: #0a0b0c;
+    border-color: #d2ff00;
+    transform: scale(1.1) rotate(-45deg);
+    box-shadow: 0 0 30px rgba(210, 255, 0, 0.4);
+}
+
+.circle-btn:hover::before {
+    inset: -10px;
+    opacity: 0;
+}
+
+.light-section .circle-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0a0b0c;
+}
+
+.light-section .circle-btn::before {
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-section .circle-btn:hover {
+    background: #0a0b0c;
+    color: #d2ff00;
 }
 
 .topo-icon {
@@ -124,31 +181,71 @@ header {
     gap: 2rem;
 }
 
-/* Buttons */
 .pill-btn {
-    padding: 0.8rem 2rem;
+    padding: 0.8rem 2.5rem;
     font-family: 'Inter', sans-serif;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 100px;
     cursor: pointer;
     border: none;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+}
+
+.pill-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transform: rotate(45deg);
+    transition: left 0.7s var(--transition);
+}
+
+.pill-btn:hover::after {
+    left: 100%;
 }
 
 .neon-btn {
     background: #d2ff00;
+    
     color: #0a0b0c;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .neon-btn:hover {
     background: #ffffff;
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(210, 255, 0, 0.4);
+    letter-spacing: 3px;
 }
 
-/* 6. Hero Section */
+.invert-btn {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.invert-btn:hover {
+    background: #ffffff;
+    color: #0a0b0c;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+    letter-spacing: 3px;
+}
+
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -217,7 +314,6 @@ header {
     object-fit: contain;
 }
 
-/* 7. Content Sections */
 .content-section {
     padding: 160px 0;
     position: relative;
@@ -265,7 +361,6 @@ header {
     transform: scale(1.1);
 }
 
-/* 8. Helmet Gallery */
 .helmet-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -301,7 +396,6 @@ header {
     color: #d2ff00;
 }
 
-/* 9. Stats Section */
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -316,7 +410,6 @@ header {
     font-family: 'Teko', sans-serif;
 }
 
-/* 10. Milestone Timeline */
 .milestone {
     display: flex;
     gap: 3rem;
@@ -337,7 +430,6 @@ header {
     min-width: 100px;
 }
 
-/* 11. Newsletter Card */
 .newsletter-card {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -363,7 +455,6 @@ header {
     width: 300px;
 }
 
-/* 12. Footer */
 footer {
     padding: 100px 0 50px;
     text-align: center;
@@ -391,7 +482,6 @@ footer {
     font-size: 1.5rem;
 }
 
-/* 13. Marquee Animation */
 .partners-marquee {
     padding: 40px 0;
     overflow: hidden;
@@ -420,7 +510,59 @@ footer {
     }
 }
 
-/* 14. Responsive - Mobile adjustments */
+.splash-screen {
+    transition: transform 1.2s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.splash-screen.splash-hidden {
+    transform: translateY(-100%);
+}
+
+header {
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), opacity 1s, background-color 0.3s;
+}
+
+header.header-hidden {
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+.hero-cutout {
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s;
+}
+
+.hero-cutout.hero-hidden {
+    transform: translateY(100px);
+    opacity: 0;
+}
+
+.marquee-container {
+    transition: opacity 2s, transform 2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.marquee-container.marquee-hidden {
+    opacity: 0;
+    transform: translateX(100px);
+}
+
+.bg-number {
+    transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s;
+}
+
+.bg-number.hidden-num {
+    transform: translateX(-50px);
+    opacity: 0;
+}
+
+.mask-follower,
+.mask-image {
+    transition: left 0.2s linear, top 0.2s linear, opacity 0.5s;
+}
+
+#custom-cursor {
+    transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s, scale 0.3s;
+}
+
 @media (max-width: 768px) {
     header {
         padding: 1rem 2rem;
@@ -435,6 +577,12 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .milestone {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
     .newsletter-form {
         flex-direction: column;
     }
@@ -444,7 +592,6 @@ footer {
     }
 }
 
-/* 15. Scroll Animations */
 .fade-element {
     opacity: 0;
     transform: translateY(30px);
@@ -456,7 +603,6 @@ footer {
     transform: translateY(0);
 }
 
-/* Dynamic Texture Overlay */
 body::after {
     content: "";
     position: fixed;
@@ -468,4 +614,162 @@ body::after {
     opacity: 0.05;
     pointer-events: none;
     z-index: 10000;
+}
+
+.store-page {
+    background-color: #0a0b0c;
+}
+
+.store-page header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.store-hero {
+    padding-top: 160px;
+    padding-bottom: 60px;
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0 4rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 100px;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #d2ff00;
+    color: #0a0b0c;
+    border-color: #d2ff00;
+    box-shadow: 0 10px 20px rgba(210, 255, 0, 0.2);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    margin-bottom: 80px;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+        border-color 0.4s;
+    position: relative;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-15px);
+    border-color: #d2ff00;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    
+    overflow: hidden;
+    background: #000;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.product-info {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex-grow: 1;
+}
+
+.product-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: #d2ff00;
+    color: #0a0b0c;
+    padding: 0.5rem 1.4rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.product-title {
+    font-size: 2.2rem;
+    line-height: 1;
+    color: #ffffff;
+    font-family: 'Teko', sans-serif;
+    letter-spacing: 1px;
+}
+
+.product-price {
+    font-family: 'Teko', sans-serif;
+    font-size: 2rem;
+    color: #d2ff00;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .pill-btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+    .category-filters {
+        gap: 1rem;
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .store-hero {
+        padding-top: 140px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .product-title {
+        font-size: 1.8rem;
+    }
 }
