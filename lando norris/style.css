@@ -1,0 +1,471 @@
+/* 
+    Lando Norris - High-Energy Design
+    Simplified CSS for Beginner-Level Developers
+    (No root variables used - actual values written directly)
+*/
+
+/* 1. Global Reset - This makes elements look consistent across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0a0b0c;
+    /* Deep Dark Background */
+    color: #ffffff;
+    /* White Text */
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. Utility Classes - Reusable text styles */
+.serif-italic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+.sans-bold {
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neon-text {
+    color: #d2ff00;
+    /* Neon Yellow */
+    text-shadow: 0 0 20px rgba(210, 255, 0, 0.4);
+}
+
+::selection {
+    background: #d2ff00;
+    color: #0a0b0c;
+}
+
+/* 3. Custom Cursor */
+#custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: #d2ff00;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    mix-blend-mode: difference;
+    transition: transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* 4. Splash Screen */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0a0b0c;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-logo {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(100px, 20vw, 300px);
+    background: linear-gradient(135deg, #d2ff00 0%, #ff8700 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 0.8;
+    margin-bottom: 2rem;
+}
+
+/* 5. Header and Navigation */
+header {
+    background: rgba(10, 11, 12, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-family: 'Teko', sans-serif;
+    font-size: 28px;
+    color: #ffffff;
+    letter-spacing: 2px;
+}
+
+.topo-icon {
+    font-family: monospace;
+    font-size: 10px;
+    color: #d2ff00;
+    letter-spacing: 4px;
+    opacity: 0.6;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Buttons */
+.pill-btn {
+    padding: 0.8rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 100px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.neon-btn {
+    background: #d2ff00;
+    color: #0a0b0c;
+}
+
+.neon-btn:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* 6. Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+}
+
+.hero-bg-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.marquee-container {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    pointer-events: none;
+}
+
+.marquee-text {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(80px, 15vw, 250px);
+    color: rgba(255, 255, 255, 0.03);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 2rem;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: min(90%, 1000px);
+    height: 90vh;
+}
+
+.hero-cutout {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mask-follower {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    z-index: 3;
+    clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+}
+
+.mask-image {
+    position: absolute;
+    width: 1000px;
+    height: 90vh;
+    object-fit: contain;
+}
+
+/* 7. Content Sections */
+.content-section {
+    padding: 160px 0;
+    position: relative;
+}
+
+.light-section {
+    background-color: #f5f6f7;
+    color: #1a1a1b;
+}
+
+.section-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 6rem;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.section-heading {
+    font-size: clamp(60px, 8vw, 120px);
+    line-height: 0.85;
+    margin-bottom: 2.5rem;
+}
+
+.section-description {
+    font-size: 1.25rem;
+    opacity: 0.8;
+    margin-bottom: 3.5rem;
+}
+
+.image-wrapper {
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+}
+
+.image-content img {
+    width: 100%;
+    display: block;
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.1);
+}
+
+/* 8. Helmet Gallery */
+.helmet-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.helmet-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: center;
+}
+
+.helmet-card:hover {
+    transform: translateY(-15px);
+    border-color: #d2ff00;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.helmet-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.helmet-year {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.5rem;
+    color: #d2ff00;
+}
+
+/* 9. Stats Section */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    flex: 1;
+}
+
+.stat-value {
+    font-size: clamp(50px, 6vw, 100px);
+    line-height: 1;
+    color: #d2ff00;
+    font-family: 'Teko', sans-serif;
+}
+
+/* 10. Milestone Timeline */
+.milestone {
+    display: flex;
+    gap: 3rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+}
+
+.milestone:hover {
+    padding-left: 1rem;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.milestone-year {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.2rem;
+    color: #d2ff00;
+    min-width: 100px;
+}
+
+/* 11. Newsletter Card */
+.newsletter-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4rem;
+    border-radius: 32px;
+    width: 100%;
+    text-align: center;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.newsletter-form input {
+    padding: 1rem 2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    width: 300px;
+}
+
+/* 12. Footer */
+footer {
+    padding: 100px 0 50px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-heading {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(80px, 15vw, 250px);
+    color: #d2ff00;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 3rem 0;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Teko', sans-serif;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+}
+
+/* 13. Marquee Animation */
+.partners-marquee {
+    padding: 40px 0;
+    overflow: hidden;
+    background: #0a0b0c;
+}
+
+.marquee-content {
+    display: flex;
+    gap: 5rem;
+    animation: scroll 20s linear infinite;
+}
+
+.marquee-content span {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.8rem;
+    opacity: 0.3;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* 14. Responsive - Mobile adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 2rem;
+    }
+
+    .section-container {
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form input {
+        width: 100%;
+    }
+}
+
+/* 15. Scroll Animations */
+.fade-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dynamic Texture Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(https://grainy-gradients.vercel.app/noise.svg);
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 10000;
+}
